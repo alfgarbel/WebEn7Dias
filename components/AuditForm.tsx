@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/meedglkk";
+
 type FormData = {
   name: string;
   email: string;
+  phone: string;
   website: string;
   businessType: string;
   message: string;
@@ -13,6 +16,7 @@ type FormData = {
 const initialForm: FormData = {
   name: "",
   email: "",
+  phone: "",
   website: "",
   businessType: "",
   message: "",
@@ -39,6 +43,8 @@ const auditPoints = [
 export default function AuditForm() {
   const [form, setForm] = useState<FormData>(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -46,25 +52,40 @@ export default function AuditForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    /*
-     * TODO: Conectar a un servicio de envío de formularios.
-     * Opciones recomendadas:
-     *   - Formspree:  https://formspree.io  (sin backend propio)
-     *   - EmailJS:    https://www.emailjs.com
-     *   - Resend:     https://resend.com  (con API Route en Next.js)
-     *   - Supabase:   insertar en tabla y enviar notificación
-     *   - API propia: POST a /api/contact con los datos del formulario
-     *
-     * Ejemplo con Formspree:
-     *   const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-     *     method: "POST",
-     *     headers: { "Content-Type": "application/json" },
-     *     body: JSON.stringify(form),
-     *   });
-     */
-    setSubmitted(true);
+    setSending(true);
+    setError(false);
+
+    try {
+      const payload: Record<string, string> = {
+        Nombre: form.name,
+        Email: form.email,
+        "Web actual": form.website || "—",
+        "Tipo de negocio": form.businessType,
+        Mensaje: form.message || "—",
+      };
+      if (form.phone) payload["Teléfono"] = form.phone;
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -81,7 +102,6 @@ export default function AuditForm() {
               ¿No sabes si tu web está perdiendo oportunidades?
             </h2>
 
-            {/* Main promise */}
             <div className="bg-white/10 border border-white/20 rounded-xl px-5 py-4 mb-8">
               <p className="text-white font-medium leading-relaxed">
                 Te enviaremos{" "}
@@ -90,7 +110,6 @@ export default function AuditForm() {
               </p>
             </div>
 
-            {/* Steps */}
             <div className="space-y-5">
               {auditPoints.map((item) => (
                 <div key={item.number} className="flex gap-4">
@@ -115,10 +134,9 @@ export default function AuditForm() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-[#0F172A] mb-2">¡Recibido!</h3>
+                <h3 className="text-xl font-bold text-[#0F172A] mb-3">¡Recibido!</h3>
                 <p className="text-[#64748B] text-sm leading-relaxed">
-                  Revisaremos tu web y te enviaremos las{" "}
-                  <strong className="text-[#0F172A]">3 mejoras concretas</strong> en menos de 48h.
+                  Gracias. Hemos recibido tu solicitud y te contactaremos pronto.
                 </p>
               </div>
             ) : (
@@ -127,7 +145,6 @@ export default function AuditForm() {
                   <h3 className="text-lg font-bold text-[#0F172A] mb-2">
                     Pide tu auditoría gratuita
                   </h3>
-                  {/* Exact requested phrase */}
                   <p className="text-sm text-[#64748B] leading-relaxed">
                     Sin compromiso. Te enviaremos una revisión inicial con{" "}
                     <span className="font-semibold text-[#0F172A]">3 mejoras concretas</span>{" "}
@@ -135,7 +152,7 @@ export default function AuditForm() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" noValidate={false}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-[#374151] mb-1.5">
@@ -146,10 +163,11 @@ export default function AuditForm() {
                         name="name"
                         type="text"
                         required
+                        disabled={sending}
                         value={form.name}
                         onChange={handleChange}
                         placeholder="Tu nombre"
-                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow disabled:opacity-50"
                       />
                     </div>
                     <div>
@@ -161,26 +179,46 @@ export default function AuditForm() {
                         name="email"
                         type="email"
                         required
+                        disabled={sending}
                         value={form.email}
                         onChange={handleChange}
                         placeholder="tu@email.com"
-                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow disabled:opacity-50"
                       />
                     </div>
                   </div>
 
                   <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-[#374151] mb-1.5">
+                      Teléfono{" "}
+                      <span className="text-[#94A3B8] font-normal">(opcional)</span>
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      disabled={sending}
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="+34 600 000 000"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow disabled:opacity-50"
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="website" className="block text-sm font-medium text-[#374151] mb-1.5">
-                      Web actual (si tienes)
+                      Web actual{" "}
+                      <span className="text-[#94A3B8] font-normal">(si tienes)</span>
                     </label>
                     <input
                       id="website"
                       name="website"
-                      type="url"
+                      type="text"
+                      disabled={sending}
                       value={form.website}
                       onChange={handleChange}
-                      placeholder="https://tunegocio.com"
-                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                      placeholder="tunegocio.com"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow disabled:opacity-50"
                     />
                   </div>
 
@@ -192,9 +230,10 @@ export default function AuditForm() {
                       id="businessType"
                       name="businessType"
                       required
+                      disabled={sending}
                       value={form.businessType}
                       onChange={handleChange}
-                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent bg-white transition-shadow"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent bg-white transition-shadow disabled:opacity-50"
                     >
                       <option value="">Selecciona tu sector</option>
                       <option>Clínica / Salud</option>
@@ -216,21 +255,47 @@ export default function AuditForm() {
                       id="message"
                       name="message"
                       rows={3}
+                      disabled={sending}
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Cuéntanos brevemente qué está fallando o qué quieres conseguir..."
-                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent resize-none transition-shadow"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent resize-none transition-shadow disabled:opacity-50"
                     />
                   </div>
 
+                  {/* Error message */}
+                  {error && (
+                    <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-50 border border-red-200">
+                      <svg className="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+                      </svg>
+                      <p className="text-sm text-red-700 leading-relaxed">
+                        Ha ocurrido un error. Inténtalo de nuevo o escríbenos directamente.
+                      </p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold text-base hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm min-h-[52px]"
+                    disabled={sending}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold text-base hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm min-h-[52px] disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100"
                   >
-                    Pedir auditoría gratuita
-                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
+                    {sending ? (
+                      <>
+                        <svg className="w-4 h-4 shrink-0 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Pedir auditoría gratuita
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
 
                   <p className="text-xs text-[#9CA3AF] text-center">
