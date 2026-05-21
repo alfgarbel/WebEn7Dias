@@ -20,15 +20,15 @@ export default function WhatNotIncludes() {
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl mx-auto text-center mb-10">
           <p className="text-sm font-semibold text-[#0EA5E9] uppercase tracking-widest mb-3">
-            Sin sorpresas
+            Transparencia
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight">
-            Qué abarca el precio base
+            Qué incluye el servicio base
           </h2>
         </div>
 
         <div className="max-w-3xl mx-auto">
-          {/* Context — positive framing */}
+          {/* Positive context */}
           <div className="flex gap-4 bg-white rounded-xl border border-[#E2E8F0] px-5 sm:px-6 py-5 mb-8">
             <div className="shrink-0 w-9 h-9 rounded-lg bg-[#EFF6FF] flex items-center justify-center mt-0.5">
               <svg className="w-5 h-5 text-[#0EA5E9]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -36,22 +36,30 @@ export default function WhatNotIncludes() {
               </svg>
             </div>
             <p className="text-sm text-[#374151] leading-relaxed">
-              Para mantener el precio cerrado y el plazo de 7 días, el servicio
-              se centra en lo esencial para que tu web esté lista y funcione.{" "}
-              <span className="font-medium text-[#0F172A]">
-                Todo lo que queda fuera se puede valorar aparte, sin compromiso.
+              Para mantener el precio cerrado y la entrega en 7 días, el servicio base
+              se centra en lo esencial.{" "}
+              <span className="font-semibold text-[#0F172A]">
+                Cualquier necesidad adicional se puede valorar aparte.
               </span>
             </p>
           </div>
 
-          {/* List — neutral, muted presentation */}
+          {/* Out-of-scope label */}
+          <p className="text-xs font-semibold text-[#94A3B8] uppercase tracking-widest mb-3 px-1">
+            Fuera del alcance base
+          </p>
+
+          {/* List */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {items.map((item) => (
               <div
                 key={item}
                 className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-[#E2E8F0]"
               >
-                <span className="w-5 h-5 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0" aria-hidden="true">
+                <span
+                  className="w-5 h-5 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0"
+                  aria-hidden="true"
+                >
                   <svg className="w-2.5 h-2.5 text-[#94A3B8]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
                   </svg>

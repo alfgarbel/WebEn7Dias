@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Qué incluye", href: "#que-incluye" },
@@ -9,33 +10,6 @@ const navLinks = [
   { label: "Precio", href: "#precio" },
 ];
 
-function Logo() {
-  return (
-    <a href="#" className="flex items-center shrink-0 group" aria-label="WebEn7Días">
-      <span className="text-[1.35rem] font-extrabold tracking-tight leading-none text-[#1E3A8A]">
-        WebEn
-      </span>
-      <span className="flex items-center ml-0.5">
-        {/* Small clock icon */}
-        <svg
-          className="w-[14px] h-[14px] text-[#0EA5E9] mr-[2px] mb-[1px] shrink-0"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3" />
-        </svg>
-        <span className="text-[1.35rem] font-extrabold tracking-tight leading-none text-[#0EA5E9]">
-          7Días
-        </span>
-      </span>
-    </a>
-  );
-}
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -43,7 +17,18 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#E2E8F0] shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Logo />
+
+          {/* Logo */}
+          <a href="#" aria-label="WebEn7Días" className="shrink-0">
+            <Image
+              src="/logo.png"
+              alt="WebEn7Días"
+              width={160}
+              height={44}
+              className="h-9 w-auto"
+              priority
+            />
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">

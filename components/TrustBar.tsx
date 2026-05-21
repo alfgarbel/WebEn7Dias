@@ -21,11 +21,11 @@ const trustItems = [
   {
     icon: (
       <svg className="w-5 h-5 text-[#22C55E] shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3" />
       </svg>
     ),
-    label: "Sin permanencia",
-    detail: "Proyecto cerrado, sin ataduras",
+    label: "Diseño responsive",
+    detail: "Móvil, tablet y escritorio",
   },
   {
     icon: (
@@ -44,10 +44,7 @@ export default function TrustBar() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {trustItems.map((item) => (
-            <div
-              key={item.label}
-              className="flex items-start sm:items-center gap-3"
-            >
+            <div key={item.label} className="flex items-start sm:items-center gap-3">
               <div className="shrink-0 w-9 h-9 rounded-lg bg-[#F0FDF4] border border-[#BBF7D0] flex items-center justify-center">
                 {item.icon}
               </div>

@@ -12,12 +12,14 @@ import AuditForm from "@/components/AuditForm";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import MobileCtaBanner from "@/components/MobileCtaBanner";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      {/* pb-24 on mobile compensates for the fixed MobileCtaBanner so it never covers content */}
+      <main className="pb-24 md:pb-0">
         <Hero />
         <TrustBar />
         <Problem />
@@ -32,6 +34,7 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
+      <MobileCtaBanner />
     </>
   );
 }

@@ -5,7 +5,6 @@ import { useState } from "react";
 type FormData = {
   name: string;
   email: string;
-  phone: string;
   website: string;
   businessType: string;
   message: string;
@@ -14,7 +13,6 @@ type FormData = {
 const initialForm: FormData = {
   name: "",
   email: "",
-  phone: "",
   website: "",
   businessType: "",
   message: "",
@@ -83,7 +81,7 @@ export default function AuditForm() {
               ¿No sabes si tu web está perdiendo oportunidades?
             </h2>
 
-            {/* Main promise — visually prominent */}
+            {/* Main promise */}
             <div className="bg-white/10 border border-white/20 rounded-xl px-5 py-4 mb-8">
               <p className="text-white font-medium leading-relaxed">
                 Te enviaremos{" "}
@@ -109,7 +107,7 @@ export default function AuditForm() {
           </div>
 
           {/* Right: form */}
-          <div className="bg-white rounded-2xl shadow-2xl shadow-black/20 p-8">
+          <div className="bg-white rounded-2xl shadow-2xl shadow-black/20 p-6 sm:p-8">
             {submitted ? (
               <div className="text-center py-10">
                 <div className="w-16 h-16 rounded-full bg-[#F0FDF4] flex items-center justify-center mx-auto mb-4">
@@ -126,11 +124,14 @@ export default function AuditForm() {
             ) : (
               <>
                 <div className="mb-6">
-                  <h3 className="text-lg font-bold text-[#0F172A] mb-1">
+                  <h3 className="text-lg font-bold text-[#0F172A] mb-2">
                     Pide tu auditoría gratuita
                   </h3>
-                  <p className="text-sm text-[#64748B]">
-                    Te respondemos con 3 mejoras concretas en menos de 48h.
+                  {/* Exact requested phrase */}
+                  <p className="text-sm text-[#64748B] leading-relaxed">
+                    Sin compromiso. Te enviaremos una revisión inicial con{" "}
+                    <span className="font-semibold text-[#0F172A]">3 mejoras concretas</span>{" "}
+                    para tu web.
                   </p>
                 </div>
 
@@ -148,7 +149,7 @@ export default function AuditForm() {
                         value={form.name}
                         onChange={handleChange}
                         placeholder="Tu nombre"
-                        className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
                       />
                     </div>
                     <div>
@@ -163,24 +164,9 @@ export default function AuditForm() {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="tu@email.com"
-                        className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                        className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
                       />
                     </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-[#374151] mb-1.5">
-                      Teléfono
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="+34 600 000 000"
-                      className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
-                    />
                   </div>
 
                   <div>
@@ -194,7 +180,7 @@ export default function AuditForm() {
                       value={form.website}
                       onChange={handleChange}
                       placeholder="https://tunegocio.com"
-                      className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent transition-shadow"
                     />
                   </div>
 
@@ -208,7 +194,7 @@ export default function AuditForm() {
                       required
                       value={form.businessType}
                       onChange={handleChange}
-                      className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent bg-white transition-shadow"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent bg-white transition-shadow"
                     >
                       <option value="">Selecciona tu sector</option>
                       <option>Clínica / Salud</option>
@@ -233,7 +219,7 @@ export default function AuditForm() {
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Cuéntanos brevemente qué está fallando o qué quieres conseguir..."
-                      className="w-full px-3 py-2.5 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent resize-none transition-shadow"
+                      className="w-full px-3 py-3 rounded-lg border border-[#D1D5DB] text-sm text-[#0F172A] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent resize-none transition-shadow"
                     />
                   </div>
 
@@ -247,10 +233,8 @@ export default function AuditForm() {
                     </svg>
                   </button>
 
-                  <p className="text-sm text-[#64748B] text-center leading-relaxed">
-                    Sin compromiso. Te enviaremos una revisión inicial con{" "}
-                    <span className="font-medium text-[#0F172A]">3 mejoras concretas</span>{" "}
-                    para tu web.
+                  <p className="text-xs text-[#9CA3AF] text-center">
+                    Te respondemos en menos de 48h.
                   </p>
                 </form>
               </>

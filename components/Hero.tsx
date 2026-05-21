@@ -1,13 +1,12 @@
 export default function Hero() {
   return (
-    <section className="relative bg-white overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-white overflow-hidden pt-14 pb-18 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8">
 
-      {/* Subtle background grid texture */}
+      {/* Subtle background grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #E2E8F0 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, #E2E8F0 1px, transparent 0)",
           backgroundSize: "32px 32px",
           opacity: 0.5,
         }}
@@ -17,24 +16,24 @@ export default function Hero() {
       <div className="relative max-w-4xl mx-auto text-center">
 
         {/* Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 sm:mb-10">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 rounded-full bg-[#EFF6FF] text-[#1E3A8A] text-xs font-semibold border border-[#BFDBFE]">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-7 sm:mb-10">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EFF6FF] text-[#1E3A8A] text-xs font-semibold border border-[#BFDBFE]">
             <svg className="w-3.5 h-3.5 text-[#22C55E] shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             Primera versión funcional en 7 días
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 rounded-full bg-[#F0FDF4] text-[#15803D] text-xs font-semibold border border-[#BBF7D0]">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F0FDF4] text-[#15803D] text-xs font-semibold border border-[#BBF7D0]">
             <svg className="w-3.5 h-3.5 text-[#22C55E] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0117.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             Garantía de devolución si no cumplimos el plazo
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-[2.4rem] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-extrabold text-[#0F172A] leading-[1.1] tracking-tight mb-5 sm:mb-6">
-          Tu web profesional lista en{" "}
+        <h1 className="text-[2.35rem] sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-extrabold text-[#0F172A] leading-[1.1] tracking-tight mb-5 sm:mb-6">
+          Tu web profesional en{" "}
           <span className="relative inline-block">
             <span className="relative z-10 text-[#0EA5E9]">7 días</span>
             <span
@@ -46,9 +45,9 @@ export default function Hero() {
           <span className="text-[#0F172A]">o te devolvemos el dinero</span>
         </h1>
 
-        {/* Subheadline — simplified */}
+        {/* Subheadline */}
         <p className="text-base sm:text-xl text-[#64748B] leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10">
-          Creamos webs modernas, claras y preparadas para convertir visitas en
+          Creamos webs claras, modernas y preparadas para convertir visitas en
           contactos para negocios de servicios.
         </p>
 
