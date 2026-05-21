@@ -1,6 +1,6 @@
 export default function Guarantee() {
   return (
-    <section id="garantia" className="bg-[#F0FDF4] py-20 px-4 sm:px-6 lg:px-8 border-y border-[#BBF7D0]">
+    <section id="garantia" className="bg-[#F0FDF4] py-24 px-4 sm:px-6 lg:px-8 border-y border-[#BBF7D0]">
       <div className="max-w-3xl mx-auto text-center">
 
         {/* Icon */}

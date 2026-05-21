@@ -1,6 +1,6 @@
 export default function FinalCTA() {
   return (
-    <section className="bg-[#F8FAFC] py-20 px-4 sm:px-6 lg:px-8 border-t border-[#E2E8F0]">
+    <section className="bg-[#F8FAFC] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E2E8F0]">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight mb-5">
           Mejora la imagen de tu negocio en{" "}

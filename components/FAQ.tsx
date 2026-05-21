@@ -49,7 +49,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold text-[#0EA5E9] uppercase tracking-widest mb-3">

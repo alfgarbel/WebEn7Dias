@@ -43,7 +43,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl mx-auto text-center mb-14">
           <p className="text-sm font-semibold text-[#0EA5E9] uppercase tracking-widest mb-3">
