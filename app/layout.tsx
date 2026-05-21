@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   description:
     "Creamos webs profesionales para negocios de servicios. Primera versión funcional en 7 días o te devolvemos el dinero.",
   metadataBase: new URL("https://weben7dias.com"),
+  icons: {
+    icon: "/favicon-icon.png",
+    shortcut: "/favicon-icon.png",
+    apple: "/favicon-icon.png",
+  },
   openGraph: {
     title: "WebEn7Días | Web profesional en 7 días",
     description:

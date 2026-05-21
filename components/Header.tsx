@@ -23,9 +23,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="WebEn7Días"
-              width={160}
-              height={44}
-              className="h-9 w-auto"
+              width={200}
+              height={56}
+              className="h-11 w-auto"
               priority
             />
           </a>
