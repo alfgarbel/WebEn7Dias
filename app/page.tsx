@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import TrustBar from "@/components/TrustBar";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import WhatIncludes from "@/components/WhatIncludes";
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <TrustBar />
         <Problem />
         <Solution />
         <WhatIncludes />

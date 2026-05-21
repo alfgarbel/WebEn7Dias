@@ -31,7 +31,7 @@ export default function Pricing() {
           <div className="rounded-2xl border-2 border-[#1E3A8A] bg-white shadow-xl shadow-[#1E3A8A]/10 overflow-hidden">
 
             {/* Card header */}
-            <div className="bg-[#1E3A8A] px-8 py-8 text-white">
+            <div className="bg-[#1E3A8A] px-5 sm:px-8 py-7 sm:py-8 text-white">
               <div className="flex items-start justify-between gap-4 mb-1">
                 <h3 className="text-xl font-bold leading-tight">
                   Web Profesional en 7 Días
@@ -66,7 +66,7 @@ export default function Pricing() {
             </div>
 
             {/* Card body */}
-            <div className="px-8 py-8">
+            <div className="px-5 sm:px-8 py-7 sm:py-8">
               <p className="text-xs font-semibold text-[#64748B] uppercase tracking-widest mb-5">
                 Todo incluido
               </p>
@@ -83,7 +83,7 @@ export default function Pricing() {
 
               <a
                 href="#auditoria"
-                className="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm"
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm min-h-[52px]"
               >
                 Pedir auditoría gratuita
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

@@ -49,9 +49,12 @@ export default function Solution() {
             <div className="mt-10">
               <a
                 href="#auditoria"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-[#1E3A8A] text-white text-sm font-semibold hover:bg-[#1e40af] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-[#1E3A8A] text-white text-sm font-semibold hover:bg-[#1e40af] active:scale-95 transition-all min-h-[48px]"
               >
                 Pedir auditoría gratuita
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </a>
             </div>
           </div>

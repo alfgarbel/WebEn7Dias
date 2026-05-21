@@ -239,16 +239,18 @@ export default function AuditForm() {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold text-sm hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-[#1E3A8A] text-white font-semibold text-base hover:bg-[#1e40af] active:scale-[0.99] transition-all shadow-sm min-h-[52px]"
                   >
-                    Quiero mi auditoría gratuita
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    Pedir auditoría gratuita
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                   </button>
 
-                  <p className="text-xs text-[#9CA3AF] text-center">
-                    Sin compromiso. Recibirás 3 mejoras concretas en menos de 48h.
+                  <p className="text-sm text-[#64748B] text-center leading-relaxed">
+                    Sin compromiso. Te enviaremos una revisión inicial con{" "}
+                    <span className="font-medium text-[#0F172A]">3 mejoras concretas</span>{" "}
+                    para tu web.
                   </p>
                 </form>
               </>
