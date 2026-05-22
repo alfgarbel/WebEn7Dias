@@ -50,7 +50,7 @@ export default function Pricing() {
 
               <div className="flex items-baseline gap-2 mb-4">
                 <span className="text-5xl font-extrabold">990€</span>
-                <span className="text-[#93C5FD] text-sm">precio único, sin IVA</span>
+                <span className="text-[#93C5FD] text-sm">precio único, IVA incluido</span>
               </div>
 
               {/* Payment terms */}
